@@ -1,6 +1,6 @@
 # fwd
 
-this is the adhd compensatory software(brain prosthetic) that will help correct the course of your life
+executive neuroprosthetic
 
 [high level overview]
 provides a structured work environment (with well paced/scoped time/effort mediation)
