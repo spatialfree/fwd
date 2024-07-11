@@ -35,12 +35,10 @@ func main() {
 
 	// core loop
 	for i := 0; i < 4; i++ {
-		// print system timestamp HH:MM
-		// fmt.Print(time.Now().Format("15:04"))
-		// fmt.Printf(" | %d/4 5s\n", i+1)
+		exec.Command("notify-send", "fwd", fmt.Sprintf("session %d/4 started, ends at %s", i+1, time.Now().Add(Duration).Format("15:04")), "--wait", "--expire-time=5000").Run()
 		rec(fmt.Sprintf("./clips/%d.mkv", i+1), Duration)
-		exec.Command("notify-send", "fwd", fmt.Sprintf("take 5, resume at %s", time.Now().Add(Intermission).Format("15:04"))).Run()
-		time.Sleep(Intermission)
+		exec.Command("notify-send", "fwd", fmt.Sprintf("session %d/4 completed, take 5 and resume at %s", i+1, time.Now().Add(Intermission).Format("15:04")), "--wait").Run()
+		// time.Sleep(Intermission)
 	}
 
 	// compile video
