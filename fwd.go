@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	Duration     = 10 * time.Minute // 25 minutes
+	Duration     = 15 * time.Minute // 25 minutes
 	Intermission = 5 * time.Minute
 )
 
