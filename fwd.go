@@ -41,6 +41,8 @@ func main() {
 		// time.Sleep(Intermission)
 	}
 
+	fmt.Println("compiling...")
+
 	// compile video
 	exec.Command("ffmpeg", "-f", "concat", "-safe", "0", "-i", "clips.txt", "-c", "copy", "clips/5_compiled.mkv").Run()
 
@@ -66,8 +68,11 @@ func main() {
 	total_time := Duration * 4
 	setpts := audio_duration.Seconds() / total_time.Seconds()
 	fmt.Printf("setpts=%f*PTS\n", setpts)
+
+	fmt.Println("scaling...")
 	exec.Command("ffmpeg", "-i", "clips/5_compiled.mkv", "-vf", fmt.Sprintf("setpts=%f*PTS", setpts), "-r", "60", "clips/8_analysis.mkv").Run()
 
+	fmt.Println("creating video...")
 	exec.Command("ffmpeg", "-i", "clips/8_analysis.mkv", "-i", "clips/7_audio.wav", "-c:v", "copy", "-c:a", "aac", "-strict", "experimental", "clips/9_analysis.mp4").Run()
 
 	fmt.Println("video ready at clips/9_analysis.mp4\n	now playing...")
